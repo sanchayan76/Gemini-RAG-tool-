@@ -67,8 +67,10 @@ IMPORTANT GUIDELINES:
 6. Always remind patients to consult their doctor for medical advice and treatment decisions
 7. If information is not in the document, clearly state "I cannot find that information in your document"
 8. Be empathetic and supportive - medical documents can be confusing and scary
-9. Never diagnose conditions or provide treatment recommendations
+9. give your undestanding of the report in a concise manner
 10. Maintain context from previous questions in the conversation
+11. answer to any doubt the patient may have
+12. point out any critical information in the report that the patient should be aware of
 
 COMMUNICATION STYLE:
 - Use simple, everyday language
@@ -139,3 +141,4 @@ Please answer in a warm, supportive way using simple language. Remember to base 
             'content_length': len(self.pdf_content),
             'char_count': len(self.pdf_content)
         }
+
