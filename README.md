@@ -1,117 +1,108 @@
-📚 PDF Chatbot with Gemini 2.5 Flash
+# 📚 PDF Chatbot with Gemini 2.5 Flash
 
-An interactive chatbot that lets you chat with your PDF documents using Google Gemini 2.5 Flash, built with Streamlit.
-The chatbot answers questions only from the uploaded PDF, ensuring accurate and hallucination-free responses.
+**PDF Chatbot with Gemini 2.5 Flash** is a Streamlit-based application that allows users to upload a PDF document and ask questions about its contents. The chatbot generates accurate, context-aware answers strictly based on the uploaded document, ensuring zero hallucinations and high factual reliability.
 
-✨ Features
+---
 
-📄 Upload and analyze any PDF document
+## ✨ Features
 
-🤖 AI-powered answers using Gemini 2.5 Flash
+* 📄 Upload and chat with any PDF document
+* 🤖 Powered by Google Gemini 2.5 Flash
+* 🔒 Answers strictly limited to PDF content
+* 🧠 Conversation memory and context awareness
+* 📊 Document statistics (filename, character count)
+* 🎨 Clean and modern Streamlit UI
+* ❌ No hallucinations or external information
 
-🔒 Responses strictly limited to PDF content
+---
 
-🧠 Conversation memory with context awareness
+## 🗂️ Project Structure
 
-📊 PDF statistics (character count, filename)
-
-🎨 Clean, modern Streamlit UI with custom styling
-
-❌ No hallucinations or external knowledge
-
-🗂️ Project Structure
+```
 .
-├── brain.py        # Core PDF chatbot logic (Gemini + PDF parsing)
-├── styl.py         # Streamlit UI and application logic
-├── temp_pdf.pdf    # Temporary file created at runtime
-└── README.md       # Project documentation
-⚙️ Requirements
+├── brain.py        # PDF processing and Gemini chatbot logic
+├── styl.py         # Streamlit UI and app flow
+├── README.md       # Project documentation
+```
 
-Python 3.9+
+---
 
-Google Gemini API key
+## ⚙️ Requirements
 
-Required Python packages:
+* Python 3.9+
+* Google Gemini API Key
+* Required libraries:
 
-streamlit
-
-google-generativeai
-
-PyPDF2
+  * streamlit
+  * google-generativeai
+  * PyPDF2
 
 Install dependencies:
 
+```bash
 pip install streamlit google-generativeai PyPDF2
-🚀 How to Run
+```
 
-Clone the repository
+---
 
+## 🚀 How to Run
+
+1. Clone the repository:
+
+```bash
 git clone https://github.com/your-username/pdf-chatbot-gemini.git
 cd pdf-chatbot-gemini
+```
 
-Run the Streamlit app
+2. Run the app:
 
+```bash
 streamlit run styl.py
+```
 
-Open the app in your browser
+3. Open the browser, enter your **Google API key**, upload a PDF, and start chatting.
 
-Enter your Google Gemini API key
+---
 
-Upload a PDF and start chatting!
+## 🧠 How It Works
 
-🧠 How It Works
+1. The PDF is uploaded and text is extracted
+2. A strict system prompt is created using only the PDF content
+3. Gemini 2.5 Flash answers questions based solely on the document
+4. Conversation history is preserved for better context
 
-The PDF is uploaded and temporarily saved
+If the answer is not found, the chatbot responds clearly:
 
-Text is extracted using PyPDF2
+> *"I cannot find that information in the document."*
 
-A strict system prompt is created using the PDF content
+---
 
-Gemini 2.5 Flash answers questions only using that content
+## 📌 Use Cases
 
-Conversation history is preserved for better context
+* Research papers
+* Study materials
+* Manuals and documentation
+* Reports and official documents
+* Academic and professional review
 
-If a question cannot be answered from the PDF, the chatbot clearly responds:
+---
 
-"I cannot find that information in the document."
+## 🖥️ Built With
 
-🔐 Safety & Accuracy Rules
+* Google Gemini 2.5 Flash
+* Streamlit
+* PyPDF2
+* Python
 
-Answers are based only on the uploaded PDF
+---
 
-No assumptions or inferred information
+## 📄 License
 
-No external knowledge usage
+This project is open-source and free for educational and personal use.
 
-Clear refusal when information is missing
+---
 
-🖥️ Built With
+## 🙌 Acknowledgments
 
-Google Gemini 2.5 Flash
-
-Streamlit
-
-PyPDF2
-
-Python
-
-📌 Use Cases
-
-Research paper Q&A
-
-Study notes and textbooks
-
-Company documents & manuals
-
-Legal or policy document review
-
-Academic and professional workflows
-
-📄 License
-
-This project is open-source and free to use for educational and personal purposes.
-
-🙌 Acknowledgments
-
-Powered by Google Gemini 2.5 Flash
-Built with ❤️ using Streamlit
+Powered by **Google Gemini 2.5 Flash**
+Built with **Streamlit**
