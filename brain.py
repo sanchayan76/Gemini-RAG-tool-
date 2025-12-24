@@ -1,19 +1,18 @@
-
 import google.generativeai as genai
 from PyPDF2 import PdfReader
 from typing import List, Dict
 
 
 class PDFChatbot:
-    """Main chatbot class that handles PDF processing and question answering."""
+    """Medical chatbot class that helps patients understand their medical documents."""
     
     def __init__(self, api_key: str, pdf_path: str):
         """
-        Initialize the PDF chatbot.
+        Initialize the medical chatbot.
         
         Args:
             api_key: Google Gemini API key
-            pdf_path: Path to the PDF file
+            pdf_path: Path to the medical document PDF
         """
         # Configure Gemini API
         genai.configure(api_key=api_key)
@@ -49,25 +48,39 @@ class PDFChatbot:
     
     def _create_system_prompt(self) -> str:
         """
-        Create the system prompt with instructions.
+        Create the medical assistant system prompt.
         
         Returns:
             Formatted system prompt
         """
-        return f"""You are a helpful assistant that answers questions based ONLY on the following PDF document: "{self.pdf_filename}".
+        return f"""You are a compassionate medical assistant helping patients understand their medical documents: "{self.pdf_filename}".
 
-IMPORTANT RULES:
-1. Answer questions using ONLY information found in the document below
-2. If the answer is not in the document, clearly state "I cannot find that information in the document"
-3. Do not make up or infer information that is not explicitly stated
-4. Maintain context from previous questions in the conversation
-5. Be specific and cite relevant parts when answering
-6. If asked about something outside the document scope, politely redirect to document-based questions
+YOUR ROLE:
+You help patients understand blood reports, prescriptions, test results, and other medical documents in simple, easy-to-understand language.
 
-DOCUMENT CONTENT:
+IMPORTANT GUIDELINES:
+1. Explain medical terms in simple, patient-friendly language
+2. Answer questions using ONLY information from the document below
+3. Break down complex medical terminology into everyday words
+4. If values are abnormal, explain what that might mean in general terms
+5. For prescriptions, explain what medications are for and how to take them
+6. Always remind patients to consult their doctor for medical advice and treatment decisions
+7. If information is not in the document, clearly state "I cannot find that information in your document"
+8. Be empathetic and supportive - medical documents can be confusing and scary
+9. Never diagnose conditions or provide treatment recommendations
+10. Maintain context from previous questions in the conversation
+
+COMMUNICATION STYLE:
+- Use simple, everyday language
+- Avoid complex medical jargon when possible
+- If you must use medical terms, always explain them
+- Be warm, supportive, and encouraging
+- Show understanding that medical information can be overwhelming
+
+MEDICAL DOCUMENT CONTENT:
 {self.pdf_content}
 
-Remember: Never generate information beyond what's in the document above."""
+IMPORTANT REMINDER: You are providing educational information only. Always encourage patients to discuss their results and any concerns with their healthcare provider."""
     
     def _format_conversation_history(self, history: List[Dict[str, str]]) -> str:
         """
@@ -84,17 +97,17 @@ Remember: Never generate information beyond what's in the document above."""
         
         history_text = "\n\nPREVIOUS CONVERSATION:\n"
         for entry in history[-5:]:  # Last 5 exchanges
-            history_text += f"User: {entry['user']}\n"
+            history_text += f"Patient: {entry['user']}\n"
             history_text += f"Assistant: {entry['assistant']}\n\n"
         
         return history_text
     
     def ask(self, question: str, history: List[Dict[str, str]]) -> str:
         """
-        Ask a question to the chatbot.
+        Ask a question to the medical chatbot.
         
         Args:
-            question: User's question
+            question: Patient's question
             history: Previous conversation history
             
         Returns:
@@ -104,9 +117,9 @@ Remember: Never generate information beyond what's in the document above."""
         
         full_prompt = f"""{self.system_prompt}
 {conversation_context}
-CURRENT QUESTION: {question}
+PATIENT'S CURRENT QUESTION: {question}
 
-Please answer based only on the document content above."""
+Please answer in a warm, supportive way using simple language. Remember to base your answer only on the document content and remind the patient to consult their doctor."""
         
         try:
             response = self.model.generate_content(full_prompt)
@@ -116,7 +129,7 @@ Please answer based only on the document content above."""
     
     def get_pdf_info(self) -> Dict[str, any]:
         """
-        Get information about the loaded PDF.
+        Get information about the loaded medical document.
         
         Returns:
             Dictionary with PDF information
