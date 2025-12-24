@@ -1,6 +1,10 @@
 # 📚 PDF Chatbot with Gemini 2.5 Flash
 
-**PDF Chatbot with Gemini 2.5 Flash** is a Streamlit-based application that allows users to upload a PDF document and ask questions about its contents. The chatbot generates accurate, context-aware answers strictly based on the uploaded document, ensuring zero hallucinations and high factual reliability.
+![Python](https://img.shields.io/badge/Python-3.9+-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![Gemini](https://img.shields.io/badge/Gemini-2.5%20Flash-green)
+
+**PDF Chatbot with Gemini 2.5 Flash** is a Streamlit-based application that allows users to upload a PDF document and ask questions about its contents. The chatbot provides accurate, context-aware answers strictly based on the uploaded document, ensuring zero hallucinations and high factual reliability.
 
 ---
 
@@ -12,7 +16,7 @@
 * 🧠 Conversation memory and context awareness
 * 📊 Document statistics (filename, character count)
 * 🎨 Clean and modern Streamlit UI
-* ❌ No hallucinations or external information
+* ❌ No hallucinations or external knowledge
 
 ---
 
@@ -22,25 +26,21 @@
 .
 ├── brain.py        # PDF processing and Gemini chatbot logic
 ├── styl.py         # Streamlit UI and app flow
-├── README.md       # Project documentation
+├── requirements.txt
+├── README.md
 ```
 
 ---
 
 ## ⚙️ Requirements
 
-* Python 3.9+
+* Python **3.9+**
 * Google Gemini API Key
-* Required libraries:
-
-  * streamlit
-  * google-generativeai
-  * PyPDF2
 
 Install dependencies:
 
 ```bash
-pip install streamlit google-generativeai PyPDF2
+pip install -r requirements.txt
 ```
 
 ---
@@ -66,12 +66,13 @@ streamlit run styl.py
 
 ## 🧠 How It Works
 
-1. The PDF is uploaded and text is extracted
-2. A strict system prompt is created using only the PDF content
-3. Gemini 2.5 Flash answers questions based solely on the document
-4. Conversation history is preserved for better context
+1. Upload a PDF document
+2. Text is extracted using PyPDF2
+3. A strict system prompt is created using only the PDF content
+4. Gemini 2.5 Flash answers questions based solely on the document
+5. Conversation history is maintained for better context
 
-If the answer is not found, the chatbot responds clearly:
+If an answer does not exist in the document, the chatbot responds:
 
 > *"I cannot find that information in the document."*
 
@@ -81,24 +82,24 @@ If the answer is not found, the chatbot responds clearly:
 
 * Research papers
 * Study materials
-* Manuals and documentation
-* Reports and official documents
+* Manuals & documentation
+* Reports and official files
 * Academic and professional review
 
 ---
 
 ## 🖥️ Built With
 
-* Google Gemini 2.5 Flash
-* Streamlit
-* PyPDF2
-* Python
+* **Google Gemini 2.5 Flash**
+* **Streamlit**
+* **PyPDF2**
+* **Python**
 
 ---
 
 ## 📄 License
 
-This project is open-source and free for educational and personal use.
+Open-source and free for educational and personal use.
 
 ---
 
